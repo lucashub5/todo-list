@@ -2,7 +2,9 @@ import '../components/style.css';
 import { createNewProject, getInfoProject, createNewNote, getNotesDB, updateNoteDB,
 updateProyDB, removeNoteDB, favoriteStatus, deleteProyDB, filterNotes, checkStatus, getProysDB } from './functions.js';
 import { format } from 'date-fns';
-import logoImage from '../src/components/images/image-logo.svg';
+import logoImage from '../components/images/image-logo.svg';
+import informationVariantCircle from '../components/images/information-variant-circle.svg';
+
 
 export function templateDOM() {
     const headerHTML = `
@@ -24,7 +26,7 @@ export function templateDOM() {
                     </ul>
                 </div>
             </div>
-            <img src="../src/components/images/information-variant-circle.svg" alt="info">
+            <img src="${informationVariantCircle}" alt="info">
         </div>
     </header>
     `;
