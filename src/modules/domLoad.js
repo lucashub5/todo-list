@@ -3,8 +3,22 @@ import { createNewProject, getInfoProject, createNewNote, getNotesDB, updateNote
 updateProyDB, removeNoteDB, favoriteStatus, deleteProyDB, filterNotes, checkStatus, getProysDB } from './functions.js';
 import { format } from 'date-fns';
 import logoImage from '../components/images/image-logo.svg';
-import informationVariantCircle from '../components/images/information-variant-circle.svg';
-
+import informationVariantCircleImage from '../components/images/information-variant-circle.svg';
+import inboxImage from '../components/images/inbox.svg';
+import todayImage from '../components/images/calendar-today.svg';
+import weekImage from '../components/images/calendar-week.svg';
+import completedNoteImage from '../components/images/calendar-multiple-check.svg';
+import incompleteNoteImage from '../components/images/calendar-incompleted.svg';
+import favoritedNOteImage from '../components/images/calendar-star.svg';
+import trashNoteImage from '../components/images/delete.svg';
+import addProjectImage from '../components/images/plus.svg';
+import projectImage from '../components/images/calendar-multiselect.svg';
+import closeImage from '../components/images/close.svg';
+import plusImage from '../components/images/plus.svg';
+import checkImage from '../components/images/check-circle.svg';
+import checkOutlineImage from '../components/images/check-circle-outline.svg';
+import starImage from '../components/images/star.svg';
+import starOutlineImage from '../components/images/star-outline.svg';
 
 export function templateDOM() {
     const headerHTML = `
@@ -26,7 +40,7 @@ export function templateDOM() {
                     </ul>
                 </div>
             </div>
-            <img src="${informationVariantCircle}" alt="info">
+            <img src="${informationVariantCircleImage}" alt="info">
         </div>
     </header>
     `;
@@ -36,13 +50,13 @@ export function templateDOM() {
         <aside>
             <nav>
             <ul>
-                <li id="inbox"><img src="../src/components/images/inbox.svg"><a>Inbox</a></li>
-                <li id="today"><img src="../src/components/images/calendar-today.svg"><a>Today</a></li>
-                <li id="week"><img src="../src/components/images/calendar-week.svg"><a>This week</a></li>
-                <li id="completed-note"><img src="../src/components/images/calendar-multiple-check.svg"><a>Completed</a></li>
-                <li id="incompleted-note"><img src="../src/components/images/calendar-incompleted.svg"><a>Incompleted</a></li>
-                <li id="favorited-note"><img src="../src/components/images/calendar-star.svg"><a>Favorited</a></li>
-                <li id="trash-note"><img src="../src/components/images/delete.svg"><a>Trash</a></li>
+                <li id="inbox"><img src="${inboxImage}"><a>Inbox</a></li>
+                <li id="today"><img src="${todayImage}"><a>Today</a></li>
+                <li id="week"><img src="${weekImage}"><a>This week</a></li>
+                <li id="completed-note"><img src="${completedNoteImage}"><a>Completed</a></li>
+                <li id="incompleted-note"><img src="${incompleteNoteImage}"><a>Incompleted</a></li>
+                <li id="favorited-note"><img src="${favoritedNOteImage}"><a>Favorited</a></li>
+                <li id="trash-note"><img src="${trashNoteImage}"><a>Trash</a></li>
             </ul>
             </nav>
             <h2>Projects</h2>
@@ -50,7 +64,7 @@ export function templateDOM() {
                 <ul id="aside-projects">
                 </ul>
             </nav>
-            <button id="add-project"><img src="../src/components/images/plus.svg"><a>New project</a></button>
+            <button id="add-project"><img src="${addProjectImage}"><a>New project</a></button>
         </aside>
         <content>
         </content>
@@ -81,7 +95,7 @@ export function addProjectDOM(projects, loadBool = false) {
     const newInput = document.createElement('input');
     newInput.setAttribute('placeholder', 'New folder');
     const newProject = document.createElement('li');
-    newProject.innerHTML = `<img src="../src/components/images/calendar-multiselect.svg">`;
+    newProject.innerHTML = `<img src="${projectImage}">`;
     newProject.appendChild(newInput);
     const projectsContainer = document.getElementById('aside-projects');
     projectsContainer.appendChild(newProject);
@@ -110,7 +124,7 @@ export function addProjectDOM(projects, loadBool = false) {
             newProject.removeChild(newInput);
             newProject.appendChild(newLink);
             const btnRemoveProy = document.createElement('button');
-            btnRemoveProy.innerHTML = `<img src="../src/components/images/close.svg">`;
+            btnRemoveProy.innerHTML = `<img src="${closeImage}">`;
             newProject.appendChild(btnRemoveProy);
             newProject.addEventListener('mouseover', () => {
                 btnRemoveProy.style.display = 'flex';
@@ -161,7 +175,7 @@ function loadProyInContent(title, id) {
 
     const btnNewNote = `
     <button id="add-note">
-        <img src="../src/components/images/plus.svg">
+        <img src="${plusImage}">
         <a>New note</a>
     </button>
     `;
@@ -214,13 +228,13 @@ function addNoteDOM(...args) {
 
     const btnsHTML = `
     <button class="check-note">
-        <img src="../src/components/images/${check ? 'check-circle' : 'check-circle-outline'}.svg">
+        <img src="${check ? checkImage : checkOutlineImage}">
     </button>
     <button class="favorite-note">
-        <img src="../src/components/images/${priority ? 'star' : 'star-outline'}.svg">
+        <img src="${priority ? starImage : starOutlineImage}">
     </button>
     <button class="remove-note">
-        <img src="../src/components/images/close.svg">
+        <img src="${closeImage}">
     </button>`;
     const btnsContainer = document.createElement('div');
     btnsContainer.classList = 'btns-cont'
@@ -293,13 +307,13 @@ function checkNote(event) {
 
     if(getStatus == true) {
         const newImage = document.createElement('img');
-        newImage.src = '../src/components/images/check-circle.svg';
+        newImage.src = checkImage;
         event.target.parentNode.appendChild(newImage);
         event.target.remove();
     }
     else {
         const newImage = document.createElement('img');
-        newImage.src = '../src/components/images/check-circle-outline.svg';
+        newImage.src = checkOutlineImage;
         event.target.parentNode.appendChild(newImage);
         event.target.remove();
     }
@@ -311,13 +325,13 @@ function favoriteNote(event) {
 
     if(getStatus == true) {
         const newImage = document.createElement('img');
-        newImage.src = '../src/components/images/star.svg';
+        newImage.src = starImage;
         event.target.parentNode.appendChild(newImage);
         event.target.remove();
     }
     else {
         const newImage = document.createElement('img');
-        newImage.src = '../src/components/images/star-outline.svg';
+        newImage.src = starOutlineImage;
         event.target.parentNode.appendChild(newImage);
         event.target.remove();
     }
