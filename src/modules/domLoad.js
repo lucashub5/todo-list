@@ -2,12 +2,13 @@ import '../components/style.css';
 import { createNewProject, getInfoProject, createNewNote, getNotesDB, updateNoteDB,
 updateProyDB, removeNoteDB, favoriteStatus, deleteProyDB, filterNotes, checkStatus, getProysDB } from './functions.js';
 import { format } from 'date-fns';
+import logoImage from '../src/components/images/image-logo.svg';
 
 export function templateDOM() {
     const headerHTML = `
     <header>
         <div class="logo-user">
-            <img src="../src/components/images/image-logo.svg" alt="logo-user">
+            <img src="${logoImage}" alt="logo-user">
             <h1>@UsuarioDemo</h1>
         </div>
         <div class="info-container">
